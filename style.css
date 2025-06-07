@@ -1,0 +1,112 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #0d0d0d;
+  color: #f0f0f0;
+  font-family: 'Segoe UI', sans-serif;
+  padding: 30px;
+}
+
+h1, h2 {
+  color: #00ffff;
+  margin-bottom: 20px;
+}
+
+.code-box {
+  background: #1a1a1a;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  border-left: 4px solid #00ffff;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+  transition: transform 0.2s ease;
+}
+
+.code-box:hover {
+  transform: scale(1.02);
+}
+
+.code-text {
+  font-size: 20px;
+  font-weight: bold;
+  color: #00ffcc;
+}
+
+.desc {
+  font-size: 14px;
+  margin-top: 5px;
+  color: #ccc;
+}
+
+.bubble-button {
+  position: relative;
+  background-color: #00ffff;
+  color: #000;
+  border: none;
+  padding: 10px 15px;
+  margin-top: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 6px;
+  overflow: hidden;
+  z-index: 0;
+  transition: background-color 0.3s;
+}
+
+.bubble-button:hover {
+  background-color: #00dddd;
+}
+
+.bubble-button:focus {
+  outline: none;
+}
+
+.bubble {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: rgba(0, 255, 255, 0.6);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: bubble-fly 0.8s forwards;
+  z-index: 1;
+}
+
+@keyframes bubble-fly {
+  0% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2) translateY(-80px);
+    opacity: 0;
+  }
+}
+
+.search-bar {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+#searchInput {
+  width: 90%;
+  max-width: 500px;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: none;
+  border-radius: 12px;
+  outline: none;
+  background-color: #222;
+  color: #fff;
+  box-shadow: 0 0 10px rgba(0,0,0,0.4);
+  transition: box-shadow 0.3s;
+}
+
+#searchInput:focus {
+  box-shadow: 0 0 10px rgba(255,255,255,0.4);
+}

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Códigos Blox Fruits</title>
+  <style>
+    body {
+      background-color: #111;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    .header {
+      padding: 20px;
+      background-color: #000;
+    }
+
+    h1 {
+      margin: 10px 0;
+      font-size: 32px;
+    }
+
+    .search-bar {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+    }
+
+    #searchInput {
+      width: 90%;
+      max-width: 500px;
+      padding: 10px 15px;
+      font-size: 16px;
+      border: none;
+      border-radius: 12px;
+      outline: none;
+      background-color: #222;
+      color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    }
+
+    #searchInput:focus {
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+    }
+
+    .code-section {
+      margin: 30px auto;
+      max-width: 800px;
+      padding: 0 15px;
+    }
+
+    .code-box {
+      background-color: #1c1c1c;
+      margin: 10px 0;
+      padding: 15px;
+      border-radius: 10px;
+      position: relative;
+      transition: transform 0.2s;
+    }
+
+    .code-box:hover {
+      transform: scale(1.02);
+    }
+
+    .code-box.expired {
+      opacity: 0.5;
+    }
+
+    .code-text {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .desc {
+      font-size: 14px;
+      margin: 5px 0 10px;
+    }
+
+    .bubble-button {
+      background-color: #444;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bubble {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 50%;
+      animation: bubble 0.8s ease-out forwards;
+    }
+
+    @keyframes bubble {
+      0% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(2.5);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Códigos Blox Fruits</h1>
+  </div>
+
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="🔍 Pesquise um código..." />
+  </div>
+
+  <div class="code-section">
+    <h2>Códigos Ativos</h2>
+    <div id="active-codes"></div>
+  </div>
+
+  <div class="code-section">
+    <h2>Códigos Expirados</h2>
+    <div id="expired-codes"></div>
+  </div>
+
+  <script>
+    const activeCodes = [
+      { code: "fudd10", desc: "$1" },
+      { code: "fudd10_V2", desc: "$2" },
+      { code: "Chandler", desc: "$0" },
+      { code: "BIGNEWS", desc: "Desbloqueia o título Big News (Segundo Mar)" },
+      { code: "KITT_RESET", desc: "Redefinição de estatísticas grátis" },
+      { code: "Sub2UncleKizaru", desc: "Redefinição de estatísticas grátis" },
+      { code: "SUB2GAMERROBOT_RESET1", desc: "Redefinição de estatísticas grátis" },
+      { code: "Sub2Fer999", desc: "20 minutos de experiência 2x" },
+      { code: "Enyu_is_Pro", desc: "20 minutos de experiência 2x" },
+      { code: "JCWK", desc: "20 minutos de experiência 2x" },
+      { code: "StarcodeHEO", desc: "20 minutos de experiência 2x" },
+      { code: "MagicBUS", desc: "20 minutos de experiência 2x" },
+      { code: "KittGaming", desc: "20 minutos de experiência 2x" },
+      { code: "Sub2CaptainMaui", desc: "20 minutos de experiência 2x" },
+      { code: "Sub2OfficialNoobie", desc: "20 minutos de experiência 2x" },
+      { code: "TheGreatAce", desc: "20 minutos de experiência 2x" },
+      { code: "Sub2NoobMaster123", desc: "20 minutos de experiência 2x" },
+      { code: "Sub2Daigrock", desc: "20 minutos de experiência 2x" },
+      { code: "Axiore", desc: "20 minutos de experiência 2x" },
+      { code: "StrawHatMaine", desc: "20 minutos de experiência 2x" },
+      { code: "TantaiGaming", desc: "20 minutos de experiência 2x" },
+      { code: "Bluxxy", desc: "20 minutos de experiência 2x" },
+      { code: "SUB2GAMERROBOT_EXP1", desc: "30 minutos de experiência 2x" }
+    ];
+
+    const expiredCodes = [
+      { code: "ADMINFIGHT", desc: "20 minutos de experiência 2x" },
+      { code: "GIFTING_HOURS", desc: "20 minutos de experiência 2x" },
+      { code: "EARN_FRUITS", desc: "20 minutos de experiência 2x" },
+      { code: "FIGHT4FRUIT", desc: "20 minutos de experiência 2x" },
+      { code: "NOEXPLOITER", desc: "20 minutos de experiência 2x" },
+      { code: "ADMINHACKED", desc: "Redefinição de estatísticas grátis" },
+      { code: "NOOB2ADMIN", desc: "20 minutos de experiência 2x" },
+      { code: "CODESLIDE", desc: "20 minutos de experiência 2x" }
+    ];
+
+    const activeContainer = document.getElementById("active-codes");
+    activeCodes.forEach(item => {
+      const box = document.createElement("div");
+      box.className = "code-box";
+      const buttonId = `btn-${item.code}`;
+      box.innerHTML = `
+        <div class="code-text">${item.code}</div>
+        <div class="desc">${item.desc}</div>
+        <button id="${buttonId}" class="bubble-button" onclick="copyCode(event, '${item.code}')">Copiar Código</button>
+      `;
+      activeContainer.appendChild(box);
+    });
+
+    const expiredContainer = document.getElementById("expired-codes");
+    expiredCodes.forEach(item => {
+      const box = document.createElement("div");
+      box.className = "code-box expired";
+      box.innerHTML = `
+        <div class="code-text">${item.code}</div>
+        <div class="desc">${item.desc}</div>
+      `;
+      expiredContainer.appendChild(box);
+    });
+
+    function copyCode(event, code) {
+      const btn = event.currentTarget;
+
+      navigator.clipboard.writeText(code).then(() => {
+        const originalText = btn.innerText;
+        btn.innerText = "✅ Copiado!";
+        btn.disabled = true;
+
+        setTimeout(() => {
+          btn.innerText = originalText;
+          btn.disabled = false;
+        }, 2000);
+      });
+
+      for (let i = 0; i < 5; i++) {
+        const bubble = document.createElement("span");
+        bubble.className = "bubble";
+        bubble.style.left = `${Math.random() * 100}%`;
+        bubble.style.top = `${Math.random() * 100}%`;
+        btn.appendChild(bubble);
+
+        setTimeout(() => {
+          bubble.remove();
+        }, 800);
+      }
+    }
+
+    document.getElementById("searchInput").addEventListener("input", function () {
+      const query = this.value.toLowerCase();
+      document.querySelectorAll(".code-box").forEach(box => {
+        const text = box.textContent.toLowerCase();
+        box.style.display = text.includes(query) ? "block" : "none";
+      });
+    });
+  </script>
+</body>
+</html>
